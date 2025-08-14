@@ -84,7 +84,7 @@ export default function Home() {
         name: 'How does Present Perfect work?',
         acceptedAnswer: {
           '@type': 'Answer',
-          text: 'Present Perfect uses AI to analyze your answers to a personality quiz about the gift recipient. Based on their age, interests, personality, and your relationship, our AI generates personalized gift recommendations that are thoughtful and meaningful.'
+          text: 'Present Perfect uses AI to analyze your answers to a personality quiz about the gift recipient. Based on their age, interests, personality, and your relationship, our AI generates personalized gift recommendations that are thoughtful and meaningful'
         }
       },
       {
