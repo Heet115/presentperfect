@@ -4,9 +4,6 @@ Allow: /
 # Sitemap
 Sitemap: https://present-perfect.vercel.app/sitemap.xml
 
-# Crawl-delay
-Crawl-delay: 1
-
 # Disallow admin or private areas (if any in future)
 # Disallow: /admin/
 # Disallow: /api/
