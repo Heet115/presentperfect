@@ -50,13 +50,25 @@ export const createUserProfile = async (user: User): Promise<void> => {
   const userDoc = await getDoc(userRef);
   
   if (!userDoc.exists()) {
-    await setDoc(userRef, {
+    const profileData = {
       uid: user.uid,
-      email: user.email,
+      email: user.email || '',
       name: user.displayName || '',
       createdAt: serverTimestamp(),
       updatedAt: serverTimestamp(),
-    });
+    };
+    
+    await setDoc(userRef, profileData);
+  } else {
+    // Update existing profile to ensure email is stored if it wasn't before
+    const existingData = userDoc.data();
+    
+    if (!existingData.email && user.email) {
+      await setDoc(userRef, {
+        email: user.email,
+        updatedAt: serverTimestamp(),
+      }, { merge: true });
+    }
   }
 };
 
@@ -72,6 +84,7 @@ export const getUserProfile = async (userId: string): Promise<UserProfile | null
 
 export const updateUserProfile = async (userId: string, updates: Partial<Omit<UserProfile, 'createdAt' | 'updatedAt'>>): Promise<void> => {
   const userRef = doc(db, COLLECTIONS.USER_PROFILES, userId);
+  
   await setDoc(userRef, {
     ...updates,
     updatedAt: serverTimestamp(),

@@ -52,8 +52,12 @@ export default function AuthModal({
           password
         );
         await updateProfile(userCredential.user, { displayName: name });
-        // Also update our database with the name
-        await updateUserProfile(userCredential.user.uid, { name });
+        
+        // Also update our database with the name and email
+        await updateUserProfile(userCredential.user.uid, { 
+          name,
+          email: userCredential.user.email || email 
+        });
       }
       onSuccess();
       onClose();
