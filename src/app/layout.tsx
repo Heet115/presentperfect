@@ -170,7 +170,7 @@ export default function RootLayout({
       <body
         className={`${geistSans.variable} ${geistMono.variable} antialiased`}
       >
-        google-site-verification: google83470e9317b97a7c.html
+        {children}
         <Toaster />
       </body>
     </html>
